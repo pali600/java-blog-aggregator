@@ -5,7 +5,7 @@
 <html>
 <head>
 
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -33,6 +33,11 @@
 </head>
 <body>
 
+	<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
+		prefix="tilesx"%>
+
+	<tilesx:useAttribute name="current" />
+
 	<!-- Static navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -48,9 +53,12 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href='<spring:url value="/" />' >Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
+					<li class="${current == 'index' ? 'active' : ''}"><a
+						href='<spring:url value="/" />'>Home</a></li>
+					<li class="${current == 'users' ? 'active' : ''}"><a
+						href='<spring:url value="/users.html" />'>Users</a></li>
+					<li class="${current == 'register' ? 'active' : ''}"><a
+						href='<spring:url value="/register.html" />'>Register</a></li>						
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

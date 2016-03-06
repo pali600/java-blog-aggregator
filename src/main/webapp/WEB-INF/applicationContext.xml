@@ -33,13 +33,15 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
-		id="jpaTransactionManager">
+		id="transactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<jpa:repositories base-package="cz.jiripinkas.jba.repository"
-		entity-manager-factory-ref="emf" transaction-manager-ref="jpaTransactionManager" />
+		entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager" />
+	
+	<import resource="security.xml" />
 
 </beans>
