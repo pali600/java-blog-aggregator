@@ -21,7 +21,7 @@ public class User {
 	private String password;
 	@ManyToMany
 	@JoinTable
-	private List<Role> role;
+	private List<Role> roles;
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<Blog> blogs;
 
@@ -57,20 +57,20 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Role> getRole() {
-		return role;
-	}
-
-	public void setRole(List<Role> role) {
-		this.role = role;
-	}
-
 	public List<Blog> getBlogs() {
 		return blogs;
 	}
 
 	public void setBlogs(List<Blog> blogs) {
 		this.blogs = blogs;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 }

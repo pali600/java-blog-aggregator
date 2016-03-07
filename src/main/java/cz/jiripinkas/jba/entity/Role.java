@@ -13,7 +13,7 @@ public class Role {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@ManyToMany
+	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 	private String name;
 	
