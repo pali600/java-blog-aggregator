@@ -24,6 +24,7 @@ public class User {
 	private List<Role> roles;
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<Blog> blogs;
+	private boolean enabled;
 
 	public Integer getId() {
 		return id;
@@ -71,6 +72,14 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }
