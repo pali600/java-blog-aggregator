@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/taglib.jsp"%>
 
-<h1>${user.name}</h1>
+<h1><c:out value="${user.name}"/></h1>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
@@ -64,7 +64,7 @@
 <ul class="nav nav-tabs" role="tablist">
 	<c:forEach items="${user.blogs}" var="blog">
 		<li role="presentation"><a href="#blog_${blog.id}"
-			aria-controls="profile" role="tab" data-toggle="tab">${blog.name}</a></li>
+			aria-controls="profile" role="tab" data-toggle="tab"><c:out value="${blog.name}"/></a></li>
 	</c:forEach>
 </ul>
 
@@ -76,7 +76,7 @@
 			<h1>${blog.name}</h1>
 			<p>
 				<a href='<spring:url value="/blog/remove/${blog.id}.html"/>'
-					class="btn btn-danger triggerRemove">remove blog</a> ${blog.url}
+					class="btn btn-danger triggerRemove">remove blog</a><c:out value="${blog.url}"/>  
 			</p>
 			<table class="table table-border table-hover table-striped">
 				<thead>
@@ -88,8 +88,8 @@
 				<tbody>
 					<c:forEach items="${blog.items}" var="item">
 						<tr>
-							<td>${item.title}</td>
-							<td>${item.link}</td>
+							<td><c:out value="${item.title}"/></td>
+							<td><c:out value="${item.link}"/></td>
 						</tr>
 					</c:forEach>
 				</tbody>
