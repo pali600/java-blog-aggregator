@@ -27,12 +27,14 @@
 						<label for="name" class="col-sm-2 control-label">Name:</label>
 						<div class="col-sm-10">
 							<form:input path="name" cssClass="form-controll" />
+							<form:errors path="name" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="url" class="col-sm-2 control-label">Url:</label>
 						<div class="col-sm-10">
 							<form:input path="url" cssClass="form-controll" />
+							<form:errors path="url" />
 						</div>
 					</div>
 
