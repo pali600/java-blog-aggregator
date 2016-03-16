@@ -50,42 +50,47 @@
 <br />
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.nav-tabs a:first').tab('show'); // Select first tab
-		$('.triggerRemove').click(function(e) {
-			e.preventDefault();
-			$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
-			$("#modalRemove").modal();
-		});
-		
-		$(".blogForm").validate(
-				{
-					rules : {
-						name : {
-							required : true,
-							minlength : 1
-						},
-						url : {
-							required : true,
-							url : 3
-						}
-					},
-					highlight: function(element) {
-						$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-					},
-					unhighlight: function(element) {
-						$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-					}				
-				}				
-		);
-	})
+	$(document).ready(
+			function() {
+				$('.nav-tabs a:first').tab('show'); // Select first tab
+				$('.triggerRemove').click(
+						function(e) {
+							e.preventDefault();
+							$("#modalRemove .removeBtn").attr("href",
+									$(this).attr("href"));
+							$("#modalRemove").modal();
+						});
+
+				$(".blogForm").validate(
+						{
+							rules : {
+								name : {
+									required : true,
+									minlength : 1
+								},
+								url : {
+									required : true,
+									url : 3
+								}
+							},
+							highlight : function(element) {
+								$(element).closest('.form-group').removeClass(
+										'has-success').addClass('has-error');
+							},
+							unhighlight : function(element) {
+								$(element).closest('.form-group').removeClass(
+										'has-error').addClass('has-success');
+							}
+						});
+			})
 </script>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
 	<c:forEach items="${user.blogs}" var="blog">
 		<li role="presentation"><a href="#blog_${blog.id}"
-			aria-controls="profile" role="tab" data-toggle="tab"><c:out value="${blog.name}"/></a></li>
+			aria-controls="profile" role="tab" data-toggle="tab"><c:out
+					value="${blog.name}" /></a></li>
 	</c:forEach>
 </ul>
 
@@ -97,20 +102,29 @@
 			<h1>${blog.name}</h1>
 			<p>
 				<a href='<spring:url value="/blog/remove/${blog.id}.html"/>'
-					class="btn btn-danger triggerRemove">remove blog</a><c:out value="${blog.url}"/>  
+					class="btn btn-danger triggerRemove">remove blog</a>
+				<c:out value="${blog.url}" />
 			</p>
 			<table class="table table-border table-hover table-striped">
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>Link</th>
+						<th>date</th>
+						<th>item</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${blog.items}" var="item">
 						<tr>
-							<td><c:out value="${item.title}"/></td>
-							<td><c:out value="${item.link}"/></td>
+							<td><c:out value="${item.publishedDate}" /></td>
+							<td>
+								<strong>
+									<a href="<c:out value="${item.link}" />" target="_blank">
+										<c:out value="${item.title}" />
+									</a>
+								</strong>
+								<br/>
+								${item.description}
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -132,9 +146,7 @@
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Remove blog</h4>
 			</div>
-			<div class="modal-body">
-				Really remove?
-			</div>
+			<div class="modal-body">Really remove?</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				<a href="" class="btn btn-danger removeBtn">Remove</a>
